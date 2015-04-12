@@ -27,7 +27,3 @@ def tweet(username, password, tweet):
 	elem4 = browser.find_element_by_class_name('tweeting-text')
 	elem4.click()
 	browser.quit()
-
-print loginTwitter('abcd', 'rr32r3r3')
-print loginTwitter('robberbot', 'Class_Test_2015')
-tweet('robberbot', 'Class_Test_2015', 'selenium is sick')
