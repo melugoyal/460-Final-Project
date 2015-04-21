@@ -11,7 +11,7 @@ auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth)
 
-user_id = 'courtneylmarin'
+user_id = 'phamduchieu'
 
 #public_tweets = api.home_timeline()
 #for tweet in public_tweets:

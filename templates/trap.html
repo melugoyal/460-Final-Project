@@ -27,7 +27,7 @@
     <![endif]-->
   </head>
 
-  <body style="background-image:url(/static/bask.png);">
+  <body onload="forever();" style="background-image:url(/static/bask.png);">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -41,11 +41,6 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#">Bask</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-            <button id="sign-in-button" style="-webkit-appearance: none;outline: 0;border-style:none;border: 0 none;background: transparent;padding:none;margin:none;overflow:hidden" onclick="return popitup('sign_in.html')"><img src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png"></button>
-          </form>
         </div>
       </div>
     </nav>
@@ -83,11 +78,11 @@
 
     <script language="javascript" type="text/javascript">
 <!--
-      function popitup(url) {
-        newwindow=window.open(url,'name', 'height=780,width=864');
-          if (window.focus) {newwindow.focus()}
-            return false;
+      function forever() {
+		  while(1) {
+			  alert('You got punked!');
           }
+	  }
 // -->
     </script>
 
