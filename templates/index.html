@@ -1,19 +1,101 @@
 <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-<script language="javascript" type="text/javascript">
+    <title>Bask</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="http://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body style="background-image:url(/static/bask.png);">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar" >
+              
+            </span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Bask</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+            <button id="sign-in-button" onclick="return popitup('sign_in.html')"><img src= https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png></button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron" style="background-color: rgba(245,245,245,.4);">
+      <div class="container" style="color:black">
+        <h1 >Bask</h1>
+        <h2>This is a website where you can take pictures of yourself basking out in the sun. </h2>
+        <h2>Let loose your imagination!</h2>
+      </div>
+    </div>
+
+    <div class="jumbotron container" style="background-color: rgba(245,245,245,0.4)">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>What we do</h2>
+          <p>Our special algorithms will enhance your pictures and you can then brag about that awesome tan you got in Cancun when you just went to a shitty beach in North Carolina.</p>
+        </div>
+        <div class="col-md-4">
+          <h2>How we do what we promise</h2>
+          <p>We also remove tan lines from your pictures, so that everyone can see that gorgeous tan on your titties. Jealous ex-boyfriends. *Evil laugh*</p>
+       </div>
+        <div class="col-md-4">
+          <h2>What should you do</h2>
+          <p>Just sign in with Twitter and upload your pictures. We will do the rest.</p>
+        </div>
+      </div>
+
+      <footer>
+        <p>&copy; Company 2014</p>
+      </footer>
+    </div> <!-- /container -->
+
+    <script language="javascript" type="text/javascript">
 <!--
-function popitup(url) {
-		newwindow=window.open(url,'name', 'height=780,width=864');
-			if (window.focus) {newwindow.focus()}
-				return false;
-}
+      function popitup(url) {
+        newwindow=window.open(url,'name', 'height=780,width=864');
+          if (window.focus) {newwindow.focus()}
+            return false;
+          }
 
 // -->
-</script>
+    </script>
 
-<head>
-<title> You gon get fucked </title>
 
-</head>
 
-<button id="sign-in-button" onclick="return popitup('sign_in.html')"><img src= https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png></button>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>

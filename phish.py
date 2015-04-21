@@ -1,6 +1,7 @@
 from flask import Flask, request
 from flask import render_template
 from selenium_twitter import loginTwitter, tweet
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -9,6 +10,7 @@ def index():
 
 @app.route('/sign_in.html', methods=['GET', 'POST'])
 def load():
+	#url_for('static', filename='logo.png')
 	if request.method == 'POST':
 		username = request.form['session[username_or_email]']
 		password = request.form['session[password]']
