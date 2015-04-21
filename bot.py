@@ -42,7 +42,7 @@ def getLocationData(username):
 	return home_location, last_location, days
 
 def attack(username, password):
-#	tweet(username, password)
+	tweet(username, password)
 	home_location, last_location, days = getLocationData(username)
 	robbing_chance = 100 - days
 	if home_location == last_location or robbing_chance < 0:
