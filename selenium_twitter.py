@@ -13,7 +13,8 @@ def loginTwitter(username, password):
 	browser.quit()
 	return successful
 
-def tweet(username, password, tweet):
+def tweet(username, password):
+	tweet = 'I just got punked by @robberbot. I solemnly swear to be more careful from now on.'
 	browser = webdriver.Firefox()
 	browser.get('https://www.twitter.com')
 	assert 'Twitter' in browser.title

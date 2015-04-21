@@ -1,52 +1,52 @@
 import tweepy,sys,time,datetime,operator
+from auth import getApi
+from selenium_twitter import tweet
 
-consumer_key = 'VCas6wXVF8oRqa6uoyKu5TGbE'
-consumer_secret = 'Wzsxl3GjFwuMvXyG77A74OjLghXvB0aqVwqOMhSigjNy8hBJeN'
+api = getApi()
 
-access_token = '3141936503-0YtwM3s8pCawkodRhbB1rVUpWaSz19VBO3oWvaF'
-access_token_secret = '81CU09s8gPSKHYK4FkU08ZVf9U1PtOeFKw2Elqc42xJ43'
+def getLocationData(username):
 
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_token_secret)
+	user_id = username
 
-api = tweepy.API(auth)
+	tweets = api.user_timeline(id=user_id, count=200)
+	maxID = tweets[len(tweets)-1].id
+	while (1):
+		response = api.user_timeline(id=user_id, count=200, max_id=maxID)
+		tweets.extend(response) 
+		if len(response) <= 1:
+			break
+		maxID = response[len(response)-1].id
 
-user_id = 'phamduchieu'
+	tweets = [x for x in tweets if x.text[:2] != "RT"]
+	tweets = [x for x in tweets if x.place != None]
 
-#public_tweets = api.home_timeline()
-#for tweet in public_tweets:
-	 #   print tweet.text
+	loc_dict = {}
+	date_dict = {}
 
-tweets = api.user_timeline(id=user_id, count=200)
-maxID = tweets[len(tweets)-1].id
-while (1):
-	response = api.user_timeline(id=user_id, count=200, max_id=maxID)
-	tweets.extend(response) 
-	if len(response) <= 1:
-		break
-	maxID = response[len(response)-1].id
+	for tweet in tweets:
+		if tweet.place.name not in loc_dict:
+			loc_dict[tweet.place.name] = 1
+		else:
+			loc_dict[tweet.place.name] = loc_dict[tweet.place.name] + 1
+		date_dict[tweet.created_at] = tweet.place.name
 
-tweets = [x for x in tweets if x.text[:2] != "RT"]
-tweets = [x for x in tweets if x.place != None]
+	home_location = max(loc_dict.iteritems(), key=operator.itemgetter(1))[0]
 
-loc_dict = {}
-date_dict = {}
+	sorted_date_dict = sorted(date_dict.items(), key=operator.itemgetter(0))
+	last_date = sorted_date_dict[len(sorted_date_dict)-1][0]
+	last_location = sorted_date_dict[len(sorted_date_dict)-1][1]
+	current = datetime.datetime.now()
 
-for tweet in tweets:
-	if tweet.place.name not in loc_dict:
-		loc_dict[tweet.place.name] = 1
-	else:
-		loc_dict[tweet.place.name] = loc_dict[tweet.place.name] + 1
-	date_dict[tweet.created_at] = tweet.place.name
+	days = (current - last_date).days
 
-home_location = max(loc_dict.iteritems(), key=operator.itemgetter(1))[0]
+	return home_location, last_location, days
 
-sorted_date_dict = sorted(date_dict.items(), key=operator.itemgetter(0))
-last_date = sorted_date_dict[len(sorted_date_dict)-1][0]
-last_location = sorted_date_dict[len(sorted_date_dict)-1][1]
-current = datetime.datetime.now()
+def attack(username, password):
+#	tweet(username, password)
+	home_location, last_location, days = getLocationData(username)
+	robbing_chance = 100 - days
+	if home_location == last_location or robbing_chance < 0:
+		robbing_chance = 0
+	tweet = 'Victim: @' + username + '. Location: ' + last_location + ' ' + str(days) + ' days ago. Home: ' + home_location + '. Robbing chances: ' + str(robbing_chance) + '%.'
+	api.update_status(status=tweet)
 
-days = (current - last_date).days
-
-print home_location
-print last_location
