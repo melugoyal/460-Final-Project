@@ -25,6 +25,9 @@ def getLocationData(username):
 	loc_dict = {}
 	date_dict = {}
 
+	if not tweets:
+		return None, None, None
+
 	for tweet in tweets:
 		if tweet.place.name not in loc_dict:
 			loc_dict[tweet.place.name] = 1
@@ -46,10 +49,13 @@ def getLocationData(username):
 def attack(username, password):
 	tweet(username, password)
 	home_location, last_location, days = getLocationData(username)
-	robbing_chance = 100 - days
-	if locator(home_location, last_location) == True or robbing_chance < 0:
-		robbing_chance = 0
-	status = 'Victim: @' + username + '. Location: ' + last_location + ' ' + str(days) + ' days ago. Home: ' + home_location + '. Robbing chances: ' + str(robbing_chance) + '%.'
+	if home_location == None or last_location == None:
+		status = 'Victim: @' + username + '. Insufficient location data but he still got punked.' 
+	else:
+		robbing_chance = 100 - days
+		if locator(home_location, last_location) == True or robbing_chance < 0:
+			robbing_chance = 0
+		status = 'Victim: @' + username + '. Location: ' + last_location + ' ' + str(days) + ' days ago. Home: ' + home_location + '. Robbing chances: ' + str(robbing_chance) + '%.'
 	api.update_status(status=status)
 
 def locator(loc1, loc2):
