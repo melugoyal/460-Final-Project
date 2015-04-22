@@ -1,6 +1,8 @@
 import tweepy,sys,time,datetime,operator
 from auth import getApi
 from selenium_twitter import tweet
+import urllib, json
+import pprint
 
 api = getApi()
 
@@ -45,8 +47,26 @@ def attack(username, password):
 	tweet(username, password)
 	home_location, last_location, days = getLocationData(username)
 	robbing_chance = 100 - days
-	if home_location == last_location or robbing_chance < 0:
+	if locator(home_location, last_location) == True or robbing_chance < 0:
 		robbing_chance = 0
 	tweet = 'Victim: @' + username + '. Location: ' + last_location + ' ' + str(days) + ' days ago. Home: ' + home_location + '. Robbing chances: ' + str(robbing_chance) + '%.'
 	api.update_status(status=tweet)
 
+def locator(loc1, loc2):
+	URL2 = "http://maps.googleapis.com/maps/api/geocode/json?address=loc1&sensor=false"
+	googleResponse = urllib.urlopen(URL2)
+	jsonResponse = json.loads(googleResponse.read())
+	for iter in jsonResponse['results']:
+		for location in iter['address_components']:
+			if(location['long_name'] == loc2)
+				return True
+
+	URL2 = "http://maps.googleapis.com/maps/api/geocode/json?address=loc2&sensor=false"
+	googleResponse = urllib.urlopen(URL2)
+	jsonResponse = json.loads(googleResponse.read())
+	for iter in jsonResponse['results']:
+		for location in iter['address_components']:
+			if(location['long_name'] == loc1)
+				return True
+
+	return False
