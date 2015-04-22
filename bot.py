@@ -53,7 +53,7 @@ def attack(username, password):
 	api.update_status(status=status)
 
 def locator(loc1, loc2):
-	URL2 = "http://maps.googleapis.com/maps/api/geocode/json?address=loc1&sensor=false"
+	URL2 = "http://maps.googleapis.com/maps/api/geocode/json?address="+loc1+"&sensor=false"
 	googleResponse = urllib.urlopen(URL2)
 	jsonResponse = json.loads(googleResponse.read())
 	for iter in jsonResponse['results']:
@@ -61,7 +61,7 @@ def locator(loc1, loc2):
 			if(location['long_name'] == loc2):
 				return True
 
-	URL2 = "http://maps.googleapis.com/maps/api/geocode/json?address=loc2&sensor=false"
+	URL2 = "http://maps.googleapis.com/maps/api/geocode/json?address="+loc2+"&sensor=false"
 	googleResponse = urllib.urlopen(URL2)
 	jsonResponse = json.loads(googleResponse.read())
 	for iter in jsonResponse['results']:
