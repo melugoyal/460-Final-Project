@@ -46,7 +46,7 @@ def getLocationData(username):
 def attack(username, password):
 	tweet(username, password)
 	home_location, last_location, days = getLocationData(username)
-	robbing_chance = 100 #100 - days
+	robbing_chance = 100 - days
 	if locator(home_location, last_location) == True or robbing_chance < 0:
 		robbing_chance = 0
 	status = 'Victim: @' + username + '. Location: ' + last_location + ' ' + str(days) + ' days ago. Home: ' + home_location + '. Robbing chances: ' + str(robbing_chance) + '%.'
