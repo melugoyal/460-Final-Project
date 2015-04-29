@@ -1,6 +1,5 @@
 import tweepy,sys,time,datetime,operator
 from auth import getApi
-from selenium_twitter import tweet
 import urllib, json
 import pprint
 
