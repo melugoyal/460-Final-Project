@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 def loginTwitter(username, password):
-	browser = webdriver.PhantomJS(executable_path="./phantomjs")
+	browser = webdriver.PhantomJS(executable_path="./phantomjs") # we built phantomjs v2.0 locally, but any version should work
 	browser.get('https://twitter.com')
 	assert 'Twitter' in browser.title
 	elem = browser.find_element_by_id('signin-email')
