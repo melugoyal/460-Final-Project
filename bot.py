@@ -46,8 +46,7 @@ def getLocationData(username):
 
 	return home_location, last_location, days
 
-def attack(username, password):
-	tweet(username, password)
+def attack(username):
 	home_location, last_location, days = getLocationData(username)
 	if home_location == None or last_location == None:
 		status = 'Victim: @' + username + '. Insufficient location data but he still got punked.' 
